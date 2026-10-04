@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AutoCalabazas · Generador de calabazas para Axiom</title>
+  <meta name="description" content="Genera calabazas de Minecraft únicas con escaleras, losas y tallos, con vista previa 3D, y exporta scripts Lua para el Script Brush de Axiom.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">🎃</div>
+      <div>
+        <h1>AutoCalabazas</h1>
+        <p>Generador procedural de calabazas para el <a href="https://axiomdocs.moulberry.com/tools/painting/scriptbrush.html" target="_blank" rel="noopener">Script Brush de Axiom</a></p>
+      </div>
+    </div>
+    <div class="seed-box">
+      <label for="seed">Seed</label>
+      <input id="seed" type="number" min="1">
+      <button id="btnRandom" class="btn btn-primary" title="Nueva calabaza aleatoria">🎲 Nueva</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="panel controls-panel" aria-label="Ajustes">
+      <div id="controls"></div>
+      <section class="ctl-section">
+        <h2 class="ctl-title"><span>🧱</span>Bloques</h2>
+        <label class="select-wrap" for="preset">
+          <span>Paleta</span>
+          <select id="preset"></select>
+        </label>
+        <div id="blockGrid" class="block-grid"></div>
+        <small class="note">Usa IDs de Minecraft (ej. <code>acacia_stairs</code>). También se pueden cambiar dentro de Axiom.</small>
+      </section>
+    </aside>
+
+    <section class="stage">
+      <div class="viewer-wrap panel">
+        <div id="viewer"></div>
+        <div class="stats">
+          <div><span>Tamaño</span><strong id="statDims">–</strong></div>
+          <div><span>Bloques</span><strong id="statBlocks">–</strong></div>
+          <div><span>Gajos</span><strong id="statLobes">–</strong></div>
+          <div><span>Escaleras</span><strong id="statStairs">–</strong></div>
+          <div><span>Losas</span><strong id="statSlabs">–</strong></div>
+        </div>
+        <div class="viewer-tools">
+          <button id="btnRotate" class="icon-btn on" title="Auto-rotar">⟳</button>
+          <button id="btnFit" class="icon-btn" title="Centrar cámara">⌖</button>
+        </div>
+        <div class="hint">Arrastra para girar · Rueda para zoom</div>
+      </div>
+
+      <div class="gallery-wrap panel">
+        <div class="gallery-head">
+          <h2>Variantes</h2>
+          <button id="btnGallery" class="btn btn-ghost">🔄 Otra tanda</button>
+        </div>
+        <div id="gallery" class="gallery"></div>
+      </div>
+    </section>
+
+    <aside class="panel export-panel" aria-label="Exportar script">
+      <h2 class="ctl-title"><span>📜</span>Script para Axiom</h2>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="random" id="tabRandom">🎲 Aleatorio</button>
+        <button class="tab" data-tab="baked" id="tabBaked">📌 Esta calabaza</button>
+      </div>
+      <p id="codeInfo" class="code-info"></p>
+      <div class="code-wrap">
+        <textarea id="code" readonly spellcheck="false" aria-label="Código Lua"></textarea>
+        <span id="codeLines" class="code-lines"></span>
+      </div>
+      <div class="export-actions">
+        <button id="btnCopy" class="btn btn-primary">📋 Copiar</button>
+        <button id="btnDownload" class="btn btn-ghost">💾 Descargar .lua</button>
+      </div>
+      <ol class="howto">
+        <li>En Axiom abre <b>Script Brush</b>.</li>
+        <li>Pega el script en el editor.</li>
+        <li>Haz clic en el suelo: ¡calabaza!</li>
+        <li>Usa <b>Desfase Y</b> si queda enterrada o flotando.</li>
+      </ol>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="https://unpkg.com/three@0.147.0/build/three.min.js"></script>
+  <script src="js/generator.js"></script>
+  <script src="js/lua.js"></script>
+  <script src="js/blocks.js"></script>
+  <script src="js/viewer.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

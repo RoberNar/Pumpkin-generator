@@ -1,0 +1,12 @@
+{
+  "name": "autocalabazas",
+  "version": "1.0.0",
+  "description": "Generador procedural de calabazas para Axiom",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve ."
+  },
+  "dependencies": {
+    "serve": "^14.2.0"
+  }
+}
