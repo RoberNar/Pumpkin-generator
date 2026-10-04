@@ -150,9 +150,11 @@
         }
 
     // ---------- Tallo ----------
-    const minI = Math.floor((W - 1) / 2);
+    const ci = Math.floor((W - 1) / 2);
+    const ck = Math.floor((D - 1) / 2);
+    const minI = ci;
     const maxI = p.stemSymmetric ? Math.floor(W / 2) : minI;
-    const minK = Math.floor((D - 1) / 2);
+    const minK = ck;
     const maxK = p.stemSymmetric ? Math.floor(D / 2) : minK;
 
     let topJ = 0;

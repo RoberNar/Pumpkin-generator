@@ -72,6 +72,7 @@ local LEAVES = ${!!p.leaves}
 local HOLLOW = ${!!p.hollow}
 local PERFECT_ROUND = ${!!p.perfectRound}
 local CARVED_FACE = ${!!p.carvedFace}
+local STEM_SYMMETRIC = ${!!p.stemSymmetric}
 
 local TAU = math.pi * 2
 local DX = {0, 0, -1, 1}
@@ -218,10 +219,13 @@ for j = 0, H do for i = 0, W - 1 do for k = 0, D - 1 do
 end end end
 
 -- ---------- Tallo ----------
-local minI = math.floor((W - 1) / 2)
+local ci = math.floor((W - 1) / 2)
+local ck = math.floor((D - 1) / 2)
+
+local minI = ci
 local maxI = minI
 if STEM_SYMMETRIC then maxI = math.floor(W / 2) end
-local minK = math.floor((D - 1) / 2)
+local minK = ck
 local maxK = minK
 if STEM_SYMMETRIC then maxK = math.floor(D / 2) end
 
